@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.cookie-clicker-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
