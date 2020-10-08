@@ -12,6 +12,15 @@
   flex-direction: column;
 }
 
+.personalization-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.personalization-form-container {
+  display: flex;
+  flex-direction: column;
+}
 
 
 
