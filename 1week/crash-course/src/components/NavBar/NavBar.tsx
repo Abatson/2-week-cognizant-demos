@@ -43,6 +43,7 @@ export const NavBarComponent: FunctionComponent<any> = (props) => {
     menuItems.push(<MenuItem onClick={handleClose}><Link to='/login'>Login</Link></MenuItem>)
     menuItems.push(<MenuItem onClick={handleClose}><Link to='/'>Clicker</Link></MenuItem>,
         <MenuItem onClick={handleClose}><Link to='/personalization'>Personalize</Link></MenuItem>,
+        <MenuItem onClick={handleClose}><Link to='/ChuckNorris'>Chuck Norris Jokes</Link></MenuItem>,
     )
 
 
@@ -64,8 +65,11 @@ export const NavBarComponent: FunctionComponent<any> = (props) => {
                         onClose={handleClose}>
                         {menuItems}
                     </Menu>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography variant="h3" className={classes.title}>
                         Crash Course
+                </Typography>
+                <Typography variant="h6">
+                    {props.cookies.toFixed(0)} Cookies
                 </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>

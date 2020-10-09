@@ -40,7 +40,7 @@ export const CookiePersonalization: React.FunctionComponent<ICookiePersonalizati
             <h1>Personalize Your Cookie Empire</h1>
             <div className="personalization-container">
                 <figure>
-                    <img src={Store} />
+                    <img src={Store} alt='A very poorly made drawing of a store front'/>
                 </figure>
                 {toggle ? //some bool flag in state
                     <div >

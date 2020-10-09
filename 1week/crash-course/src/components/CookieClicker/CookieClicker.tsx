@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef} from 'react';
 import Cookie from '../../assets/perfectCookie.png'
 
-function useInterval(callback: any, delay: any) {
+export function useInterval(callback: any, delay: any) {
     const savedCallback = useRef<any>();
 
     // Remember the latest callback.
@@ -25,7 +25,7 @@ function useInterval(callback: any, delay: any) {
 
 
 
-const cookieMultipliers = {
+export const cookieMultipliers = {
     grandmas: 1,
     bakeries: 12,
     farms: 100,
@@ -33,7 +33,7 @@ const cookieMultipliers = {
     factories: 1000
 }
 
-const buildingCosts: any = {
+export const buildingCosts: any = {
     grandmas: 100,
     bakeries: 1000,
     farms: 10000,
@@ -47,12 +47,16 @@ interface ICookieClickerProps {
         storeName:string
         userName:string
     }
+    cookies:number
+    changeCookies:(x:number)=>void
+    cookiesPerSecond:number
+    changeCookiesPerSecond:(x:number)=>void
+    buildingsMap:any
+    changeBuildingsMap:(x:any)=>void
 }
 
 export const CookieClicker: React.FunctionComponent<ICookieClickerProps> = (props) => {
-    const [cookies, changeCookies] = useState<number>(1000);
-    const [cookiesPerSecond, changeCookiesPerSecond] = useState(0)
-    const [buildingsMap, changeBuildingsMap] = useState({ grandmas: 0, bakeries: 0, farms: 0, mines: 0, factories: 0 })
+    const {cookies,cookiesPerSecond,buildingsMap,changeBuildingsMap,changeCookies,changeCookiesPerSecond} = props
 
     //functions should be pure
     const calculateAutoCookies = (multipliers: any, buildings: any) => {
@@ -73,9 +77,7 @@ export const CookieClicker: React.FunctionComponent<ICookieClickerProps> = (prop
         }
     }
 
-    useInterval(() => {
-        changeCookies(cookies + cookiesPerSecond / 10)
-    }, 100)
+    
 
 
     return (
