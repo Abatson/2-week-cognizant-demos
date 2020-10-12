@@ -44,6 +44,7 @@ export const NavBarComponent: FunctionComponent<any> = (props) => {
     menuItems.push(<MenuItem onClick={handleClose}><Link to='/'>Clicker</Link></MenuItem>,
         <MenuItem onClick={handleClose}><Link to='/personalization'>Personalize</Link></MenuItem>,
         <MenuItem onClick={handleClose}><Link to='/ChuckNorris'>Chuck Norris Jokes</Link></MenuItem>,
+        <MenuItem onClick={handleClose}><Link to='/pokedex'>Pokedex</Link></MenuItem>,
     )
 
 

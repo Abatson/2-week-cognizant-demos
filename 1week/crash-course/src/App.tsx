@@ -9,6 +9,8 @@ import { NavBarComponent } from './components/NavBar/NavBar';
 import { useInterval } from './components/CookieClicker/CookieClicker'
 import { Purchasable } from './components/Purchasable/Purchasable';
 import { ChuckNorrisJoke } from './components/ChuckNorrisJoke/ChuckNorrisJoke';
+import { PokemonDisplay } from './components/PokemonDisplay/PokemonDisplay';
+import { Pokedex } from './components/Pokedex/Pokedex';
 
 function App() {
   const [cookiePState, changeCookiePState] = useState({ cookieName: '', storeName: '', userName: '' })
@@ -57,6 +59,9 @@ function App() {
               return <ChuckNorrisJoke/>
             }}/>
           }}/>
+          <Route path='/pokedex'>
+            <Pokedex/>
+          </Route>
         </Switch>
         <ToastContainer />
       </Router>
