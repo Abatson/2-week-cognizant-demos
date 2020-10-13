@@ -2,7 +2,7 @@ import { chuckNorrisDBClient } from "."
 
 
 
-export const chuckNorrisDBGetOneJoke = async ()=>{
+export const chuckNorrisDBGetOneJoke = async ()=> {
     let result = await chuckNorrisDBClient.get('/random', {
         params:{
           'limitTo': '[nerdy]'  
