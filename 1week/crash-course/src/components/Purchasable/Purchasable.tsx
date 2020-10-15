@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 
-interface IPurchasableProps {
+export interface IPurchasableProps {
     purchased:boolean
     render:(props:any)=>ReactElement
     price:number
