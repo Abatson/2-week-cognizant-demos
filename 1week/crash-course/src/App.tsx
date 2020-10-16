@@ -11,13 +11,15 @@ import { Purchasable } from './components/Purchasable/Purchasable';
 import { ChuckNorrisJoke } from './components/ChuckNorrisJoke/ChuckNorrisJoke';
 import { PokemonDisplay } from './components/PokemonDisplay/PokemonDisplay';
 import { Pokedex } from './components/Pokedex/Pokedex';
+import { GlobalErrorBoundary } from './components/GlobalErrorBoundary/GlobalErrorBoundary';
+import { BrokenComponent } from './components/BrokenComponent/BrokenComponent';
 
 function App() {
   const [cookiePState, changeCookiePState] = useState({ cookieName: '', storeName: '', userName: '' })
   const [cookies, changeCookies] = useState<number>(100000);
   const [cookiesPerSecond, changeCookiesPerSecond] = useState(0)
   const [buildingsMap, changeBuildingsMap] = useState({ grandmas: 0, bakeries: 0, farms: 0, mines: 0, factories: 0 })
-  const [boughtPages, changeBoughtPages] = useState<any>({ personalization: false, chuckNorris:false })
+  const [boughtPages, changeBoughtPages] = useState<any>({ personalization: false, chuckNorris: false })
 
   const buyPage = (name: string, price: number) => {
     let newPages: any = { ...boughtPages }
@@ -42,28 +44,30 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavBarComponent cookies={cookies} />
-        <Switch>
-          <Route exact path='/' render={() => <CookieClicker {...totalCookieState} cookiePState={cookiePState} />} />
-          <Route path='/personalization' render={(props) => {
-            return (
-              <Purchasable buyPage={()=>buyPage('personalization', 10000)} price={10000} cookies={cookies} purchased={boughtPages.personalization} 
-              render={(p) => {
-                return <CookiePersonalization {...props} cookiePState={cookiePState} changeCookiePState={changeCookiePState} />
-              }} />
-            )
-          }} />
-          <Route path='/ChuckNorris' render={(props)=>{
-            return <Purchasable buyPage={()=>buyPage('chuckNorris', 1000)} price={1000} cookies={cookies} purchased={boughtPages.chuckNorris} 
-            render={(p)=>{
-              return <ChuckNorrisJoke/>
-            }}/>
-          }}/>
-          <Route path='/pokedex'>
-            <Pokedex/>
-          </Route>
-        </Switch>
-        <ToastContainer />
+        <GlobalErrorBoundary>
+          <NavBarComponent cookies={cookies} />
+          <Switch>
+            <Route exact path='/' render={() => <CookieClicker {...totalCookieState} cookiePState={cookiePState} />} />
+            <Route path='/personalization' render={(props) => {
+              return (
+                <Purchasable buyPage={() => buyPage('personalization', 10000)} price={10000} cookies={cookies} purchased={boughtPages.personalization}
+                  render={(p) => {
+                    return <CookiePersonalization {...props} cookiePState={cookiePState} changeCookiePState={changeCookiePState} />
+                  }} />
+              )
+            }} />
+            <Route path='/ChuckNorris' render={(props) => {
+              return <Purchasable buyPage={() => buyPage('chuckNorris', 1000)} price={1000} cookies={cookies} purchased={boughtPages.chuckNorris}
+                render={(p) => {
+                  return <ChuckNorrisJoke />
+                }} />
+            }} />
+            <Route path='/pokedex'>
+              <Pokedex />
+            </Route>
+          </Switch>
+          <ToastContainer/>
+        </GlobalErrorBoundary>
       </Router>
     </div>
   );
